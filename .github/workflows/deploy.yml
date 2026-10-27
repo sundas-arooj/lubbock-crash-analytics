@@ -33,3 +33,8 @@ jobs:
           aws lambda update-function-code \
             --function-name lubbock-crash-analytics \
             --zip-file fileb://function.zip
+          aws lambda wait function-updated \
+            --function-name lubbock-crash-analytics
+          aws lambda update-function-configuration \
+            --function-name lubbock-crash-analytics \
+            --handler app.handler.handler
