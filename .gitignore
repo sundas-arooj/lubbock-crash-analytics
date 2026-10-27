@@ -6,3 +6,4 @@ __pycache__/
 *.db.tmp
 .aws-sam/
 deploy/package/
+function.zip
