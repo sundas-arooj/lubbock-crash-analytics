@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lubbock district crash profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,640&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <p class="eyebrow">TxDOT CRIS · Lubbock district</p>
+    <h1>Crash profile</h1>
+    <p class="lede" id="lede">Injury and fatal crashes from the supplied extract.</p>
+  </header>
+
+  <form id="filters" class="filters">
+    <label>
+      County
+      <select name="county" id="county"><option value="">All counties</option></select>
+    </label>
+    <label>
+      Year
+      <select name="year" id="year"><option value="">All years</option></select>
+    </label>
+    <label>
+      Severity
+      <select name="severity" id="severity-filter"><option value="">All severities</option></select>
+    </label>
+    <label>
+      Road class
+      <select name="road_class" id="road-class"><option value="">All road classes</option></select>
+    </label>
+    <div class="filter-actions">
+      <button type="submit" id="apply">Apply</button>
+      <button type="button" id="reset">Reset</button>
+    </div>
+  </form>
+
+  <p id="status" class="status" role="status">Loading the extract…</p>
+  <p id="error" class="error" hidden></p>
+
+  <section class="kpis" id="kpis" aria-live="polite"></section>
+
+  <section class="split">
+    <article class="panel">
+      <h2>Severity</h2>
+      <p class="hint">Each crash is counted once, under its highest reported injury level.</p>
+      <div id="severity"></div>
+    </article>
+    <article class="panel">
+      <h2>Contributing factors</h2>
+      <p class="hint">Top five factors. A crash with two factors counts once for each. NONE is excluded.</p>
+      <div id="factors"></div>
+    </article>
+  </section>
+
+  <section class="panel">
+    <h2>Crashes by month</h2>
+    <p class="hint">Months inside the first and last crash in this slice are kept, including months with none.</p>
+    <div id="trend"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Hour of day</h2>
+    <p class="hint" id="hour-hint">Local time from the crash report.</p>
+    <div id="hours"></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Mapped crashes</h2>
+      <div class="legend" id="legend"></div>
+    </div>
+    <p class="hint" id="map-note"></p>
+    <div id="map" role="img" aria-label="Map of crash locations"></div>
+  </section>
+
+  <footer>
+    <p>These figures are computed from a TxDOT Crash Records Information System extract. They are not official TxDOT statistics.</p>
+    <p><a href="/docs">API documentation</a></p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
